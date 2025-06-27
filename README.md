@@ -125,3 +125,31 @@ bun run preview
 ```
 
 Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+
+## Deployment to Render.com
+
+### Prerequisites
+1. Push your code to GitHub
+2. Have a Directus instance running (either on Render or external)
+
+### Steps:
+1. **Connect GitHub Repository**: In Render dashboard, create a new Web Service and connect your GitHub repo
+2. **Environment Variables**: Set the following in Render dashboard:
+   - `DIRECTUS_URL`: Your Directus instance URL
+   - `DIRECTUS_TOKEN`: Your Directus API token
+   - `NODE_ENV`: `production`
+3. **Build Settings**:
+   - Build Command: `npm install && npm run build`
+   - Start Command: `npm start`
+   - Node Version: 18+ (specified in package.json)
+
+### Important Notes:
+- The app is configured as a Single Page Application (SPA)
+- Make sure your Directus instance is accessible from the internet
+- Set up CORS in Directus to allow requests from your Render domain
+- Environment variables must be set in Render dashboard, not in code
+
+### Troubleshooting:
+- If build fails, check Node.js version compatibility
+- For SPA routing issues, ensure your Directus CORS settings are correct
+- Check Render logs for specific error messages
